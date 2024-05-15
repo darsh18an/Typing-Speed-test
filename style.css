@@ -1,0 +1,293 @@
+/* import gtoogle font - poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* margin: 0; - This removes any default margin from all elements. Margin is the space around the content of an element.
+
+padding: 0; - This removes any default padding from all elements. Padding is the space between the border of an element and its content.
+
+box-sizing: border-box; - This changes the way the width and height of an element are calculated in CSS. 
+By default, padding and border are added outside the width and height of the element. 
+With box-sizing: border-box, the padding and border are included within the specified width and height. */
+
+body{
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #17A2B8;
+}
+
+::selection{
+  color: #fff;
+  background: #17A2B8;
+}
+/* The ::selection pseudo-class in CSS is used to style the highlighted text on a webpage. This text selection can be made by the user dragging their mouse over text, or using keyboard shortcuts.
+
+Here's what you can style using ::selection:
+
+Background color: You can change the background color behind the highlighted text to make it stand out more or match your website's design.
+Text color: Change the color of the highlighted text itself for better readability or contrast.
+Opacity: Adjust the opacity of the highlighted text to make it more or less transparent. */
+
+.wrapper{
+  width: 770px;
+  padding: 35px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.25) ;
+}
+
+.wrapper .input-field{
+  opacity: 0;
+  z-index: -999;
+  position: absolute;
+}
+
+.wrapper .content-box{
+  padding: 13px 20px 0;
+  border-radius: 10px;
+  border: 1px solid #bfbfbf;
+}
+
+.content-box .typing-text{
+  overflow: hidden;
+  max-height: 256px;
+}
+/* The overflow: hidden; property in CSS is used to control how content behaves when it overflows the dimensions of its container element. Here's what it does:
+
+Clipping Overflow: When applied to an element, overflow: hidden; instructs the browser to clip any content that extends beyond the element's borders. This means the overflowing content will be hidden from view.
+
+Impact on Scrollbars: This property also prevents scrollbars from appearing, even if the content exceeds the element's size. This can be useful for creating specific design effects or layouts where scrollbars are not desired.
+
+Use Cases for overflow: hidden;
+
+Truncating Text: You can use overflow: hidden; to truncate text within an element and display only a specific number of characters with ellipsis (...) at the end.
+Creating Carousels: By combining overflow: hidden; with other CSS properties like width and transition, you can create carousels where content slides horizontally or vertically within a container, with overflowing content hidden.
+Image Cropping: When applied to an image element, overflow: hidden; can be used to crop the image to fit the dimensions of its container.
+Points to Consider:
+
+Accessibility: Using overflow: hidden; can impact accessibility. If content is important but gets hidden due to overflow, it might not be accessible to users with screen readers or assistive technologies.
+Alternative Approaches: Depending on your goal, there might be alternative approaches using CSS properties like text-overflow: ellipsis; for text truncation or viewport units (vw, vh) for flexible layouts that avoid overflow issues.
+Overall, overflow: hidden; is a handy tool for specific design scenarios. However, it's important to use it judiciously and consider potential accessibility implications. */
+
+.typing-text::-webkit-scrollbar{
+  width: 0;
+}
+/* This property sets the width of the scrollbar to 0 pixels. This essentially hides the scrollbar visually.
+Here are some potential use cases for this code:
+
+Animations or Text Effects: You might be using the "typing-text" class for an animation or text effect that simulates typing on the screen. Hiding the scrollbar can create a cleaner visual experience for such effects.
+Custom Scrollbars: You might have a custom scrollbar implementation using JavaScript or CSS that replaces the default browser scrollbar. In this case, hiding the default scrollbar would be necessary to avoid conflicts with your custom solution.
+Things to Consider:
+
+Browser Compatibility: As mentioned earlier, ::-webkit-scrollbar is WebKit-specific. For broader browser compatibility, consider using standard scrollbar properties like scrollbar-width (if supported) or explore alternative solutions using JavaScript.
+Accessibility: Hiding scrollbars can be problematic for users who rely on them for navigation, especially if the content within the element is scrollable. Ensure your design choices don't hinder accessibility. */
+
+.typing-text p{
+  font-size: 21px;
+  text-align: justify;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+/* The word-break property specifies how words should break when reaching the end of a line.
+ */
+
+ .typing-text p span{
+  position: relative;
+ }
+
+ .typing-text p span.correct{
+  color: #56964f;
+ }
+ .typing-text p span.incorrect{
+  color: #cb3439;
+  outline: 1px solid #fff;
+  background: #ffc0cb;
+  border-radius: 4px;
+
+ }
+
+ .typing-text p span.active{
+  color: #17A2B8;
+ }
+
+ .typing-text p span.active::before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  border-radius: 5px;
+  background: #17A2B8;
+  animation: blink 1s ease-in-out infinite;
+}
+
+ 
+ @keyframes blink {
+  50%{
+    opacity: 1;
+  }
+ }
+ /* The animation is created by gradually changing from one set of CSS styles to another.
+
+During the animation, you can change the set of CSS styles many times.
+
+Specify when the style change will happen in percent, or with the keywords "from" and "to", which is the same as 0% and 100%. 0% is the beginning of the animation, 100% is when the animation is complete. */
+
+.content-box .result-box{
+  margin-top: 17px;
+  display: flex;
+  padding: 12px 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #bfbfbf;
+}
+
+.result-box button{
+  outline: none;
+  border: none;
+  width: 105px;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #17A2B8;
+  transition: transform 0.3s ease;
+}
+/* ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default)
+linear - specifies a transition effect with the same speed from start to end
+ease-in - specifies a transition effect with a slow start
+ease-out - specifies a transition effect with a slow end
+ease-in-out - specifies a transition effect with a slow start and end
+cubic-bezier(n,n,n,n) - lets you define your own values in a cubic-bezier function
+Property	Description
+transition	A shorthand property for setting the four transition properties into a single property
+transition-delay	Specifies a delay (in seconds) for the transition effect
+transition-duration	Specifies how many seconds or milliseconds a transition effect takes to complete
+transition-property	Specifies the name of the CSS property the transition effect is for
+transition-timing-function	Specifies the speed curve of the transition effect */
+
+.result-box button:active{
+  transform: scale(0.97);
+}
+/* :active - This is a pseudo-class that targets the button when it's being clicked or actively pressed by the user.
+{ transform: scale(0.97); } - This defines the style that applies to the button in the active state. 
+The transform: scale(0.97); property instructs the browser to scale the button down to 97% of its original size on both the horizontal and vertical axes. 
+This creates a slight zoom-in or shrink effect when the user clicks the button. */
+
+.result-box .result-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: calc(100%- 140px);
+  justify-content: space-between;
+}
+
+/* Advantages of using calc():
+
+Flexibility: It allows for dynamic width calculations based on various factors.
+Responsiveness: It can be helpful in creating responsive layouts that adapt to different screen sizes.
+Reusability: You can define a single rule and reuse it for multiple elements with similar width requirements.
+Things to Consider:
+
+Browser Compatibility: While calc() is widely supported in modern browsers, 
+it's good practice to check for compatibility if you need to support older browsers.
+Readability: Complex calculations within calc() can make code harder to read. 
+If possible, consider using simpler calculations or pre-defined classes for better maintainability. */
+
+.result-details li{
+  display: flex;
+  height: 20px;
+  list-style: none;
+  position: relative;
+  align-items: center;
+}
+
+.result-details li:not(:first-child){
+  padding-left: 22px;
+  border-left: 1px solid #bfbfbf;
+}
+
+.result-details li p{
+  font-size: 19px;
+}
+
+.result-details li span{
+  display: block;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+li span b{
+  font-weight: 500;
+}
+
+li:not(:first-child) span{
+  font-weight: 500;
+}
+
+
+
+
+
+
+@media (max-width: 518px) {
+  .wrapper .content-box{
+    padding: 10px 15px 0;
+  }
+  .typing-text p{
+    font-size: 18px;
+  }
+  .result-details li{
+    margin-bottom: 10px;
+  }
+  .content button{
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 745px) {
+  .wrapper{
+    padding: 20px;
+  }
+  .content-box .content{
+    padding: 20px 0;
+  }
+  .content-box .typing-text{
+    max-height: 100%;
+  }
+  .typing-text p{
+    font-size: 19px;
+    text-align: left;
+  }
+  .content button{
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+    margin-top: 20px;
+  }
+  .content .result-details{
+    width: 100%;
+  }
+  .result-details li:not(:first-child){
+    border-left: 0;
+    padding: 0;
+  }
+  .result-details li p, 
+  .result-details li span{
+    font-size: 17px;
+  }
+}
+
